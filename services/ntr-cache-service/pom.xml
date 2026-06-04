@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.mobileum.ntr</groupId>
+        <artifactId>rns-ntr26-parent</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>ntr-cache-service</artifactId>
+    <packaging>jar</packaging>
+
+    <name>NTR Cache Service</name>
+    <description>
+        Cache refresh coordinators, Redis-backed L2 store, L1 in-process replicas
+        (per SPEC §5). First FSMApp microservice under services/. Per CLAUDE.md
+        §A2, hosts the ~56 cache implementations migrated from Couchbase (RNS-sds)
+        and ported from CAbstractCache (RNS-NTR). No business logic yet — Phase 0
+        scaffold only.
+    </description>
+
+    <dependencies>
+        <!-- Log4j2 — mandatory per CLAUDE.md P4 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
+
+        <!-- Testing — CLAUDE.md §5 Layer 2 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+            Deferred to Phase 5 (first cache port), wired through
+            parent POM dependencyManagement when added:
+              - com.roamware.sds2:sds-fsmlib    (FSMApp framework — SDS JAR, Phase 2)
+              - io.lettuce:lettuce-core         (Redis L2 client — CLAUDE.md P6)
+              - org.flywaydb:flyway-core        (PostgreSQL schema migration — CLAUDE.md P7)
+              - org.postgresql:postgresql       (JDBC driver)
+              - org.testcontainers:redis        (integration tests — Layer 3)
+              - org.testcontainers:postgresql
+              - io.opentelemetry:opentelemetry-api (CLAUDE.md P8)
+              - io.micrometer:micrometer-registry-prometheus
+        -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

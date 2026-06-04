@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.mobileum.ntr</groupId>
+        <artifactId>rns-ntr26-parent</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>ntr-common</artifactId>
+    <packaging>jar</packaging>
+
+    <name>NTR Common</name>
+    <description>
+        Shared infrastructure used by every NTR26 service. Cross-cutting utilities
+        that sit BELOW the services layer in the dependency graph: services depend
+        on ntr-common; ntr-common depends on nothing else in the project.
+
+        Current inhabitants:
+          - com.mobileum.ntr.concurrent.NtrIdLock      (ported-cpp) from RNS-NTR/cpp/IDLock.h
+          - com.mobileum.ntr.config.NtrConfigReader    (ported-cpp) from RNS-NTR/cpp/NTRCacheLibrary/NTRConfigReader.{h,cpp}
+          - com.mobileum.ntr.config.ConfigSource       (new) — pluggable backing-store interface
+
+        Future inhabitants (added as needs arise; resist creating sibling modules
+        for individual concerns — see SPEC.md §5 + CLAUDE.md §12 rule 18):
+          - com.mobileum.ntr.cache         (L1+L2 cache abstraction)
+          - com.mobileum.ntr.messaging     (Kafka/IPCB producer-consumer wrappers)
+          - com.mobileum.ntr.observability (OpenTelemetry + Prometheus setup)
+          - com.mobileum.ntr.security      (Vault integration)
+    </description>
+
+    <dependencies>
+        <!-- Log4j2 — mandatory per CLAUDE.md P4 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
+
+        <!-- Testing — JUnit 5 + Mockito + AssertJ (CLAUDE.md §5 Layer 2) -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
