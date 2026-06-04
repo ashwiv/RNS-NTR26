@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE sds-rule-definition SYSTEM "sds-rule.dtd">
+<sds-rule-definition version="1.0" name="NTR-Common-Package">
+
+  <!-- Import base SDS package — required (CLAUDE.md P2) -->
+  <import package="sds"/>
+
+  <!--
+    lib/ntr-common hosts pure utility classes (NtrIdLock, NtrConfigReader,
+    ConfigSource) — none of which are FSMApp action handlers. No FSM events,
+    no protocols, no state transitions.
+
+    This stub exists to satisfy the per-module package.xml convention.
+
+    If a future utility in lib/ntr-common needs FSMApp event-driven behavior,
+    declare its events here using the FSMApp event-framework ID range
+    (0x0002000000000000 – 0x0002FFFFFFFFFFFF, per CLAUDE.md P2).
+  -->
+
+</sds-rule-definition>

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\ashwini.vidhate\\\\Mobileum\\\\mobileum\\\\RNS-NTR\\\\cpp\\\\NTRCacheLibrary\" -Force | Select-Object -First 30 | Format-Table Name, Length -AutoSize; Write-Output \"---\"; \\(Get-ChildItem \"C:\\\\Users\\\\ashwini.vidhate\\\\Mobileum\\\\mobileum\\\\RNS-NTR\\\\cpp\\\\NTRCacheLibrary\" -Recurse -File | Measure-Object\\).Count)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(if \\(Test-Path \"C:\\\\Program Files\\\\Java\"\\) { Get-ChildItem \"C:\\\\Program Files\\\\Java\" -Directory | ForEach-Object { $_.FullName } } else { Write-Output \"no C:\\\\Program Files\\\\Java dir\" }; \"----\"; if \\(Test-Path \"C:\\\\Program Files\\\\Eclipse Adoptium\"\\) { Get-ChildItem \"C:\\\\Program Files\\\\Eclipse Adoptium\" -Directory | ForEach-Object { $_.FullName } } else { Write-Output \"no Adoptium dir\" }; \"----\"; \"java symlink target:\"; try { \\(Get-Item \"C:\\\\Program Files\\\\Common Files\\\\Oracle\\\\Java\\\\javapath\\\\java.exe\"\\).Target } catch { \"not a symlink\" })",
+      "PowerShell(mvn *)",
+      "PowerShell(mvn validate *)",
+      "PowerShell(mvn test-compile *)",
+      "Bash(awk -F'/com' '{print $1}')",
+      "Bash(xargs -I {} ls -d {})"
+    ]
+  }
+}

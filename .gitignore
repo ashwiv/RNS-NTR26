@@ -1,0 +1,63 @@
+# ──────────────────────────────────────────────────────────────
+# RNS-NTR26 .gitignore
+# ──────────────────────────────────────────────────────────────
+
+# Maven
+target/
+.mvn/wrapper/maven-wrapper.jar
+dependency-reduced-pom.xml
+
+# Compiled output
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse
+.project
+.classpath
+.settings/
+.factorypath
+bin/
+
+# VS Code
+.vscode/
+
+# NetBeans
+nbproject/private/
+nbbuild/
+nbdist/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs (CLAUDE.md P4 — local log output)
+logs/
+*.log
+
+# Local config & environment
+local.properties
+*.local
+.env
+.env.*
+
+# Secrets — must never be committed (CLAUDE.md §12 rule 16)
+secrets/
+*.pem
+*.key
+*.p12
+*.keystore
+
+# Test output
+test-output/
+.surefire-*

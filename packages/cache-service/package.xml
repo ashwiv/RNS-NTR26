@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE sds-rule-definition SYSTEM "sds-rule.dtd">
+<sds-rule-definition version="1.0" name="NTR-CacheService-Package">
+
+  <!-- Import base SDS package — required (CLAUDE.md P2) -->
+  <import package="sds"/>
+
+  <!--
+    Phase 0 scaffold. No FSMApp event rules defined yet — the first set lands
+    with the first cache port in Phase 5 (per the roadmap).
+
+    Per CLAUDE.md §P2, Event ID allocation for this module follows the
+    Rules Engine / Cache range:
+        0x0003000000000000 – 0x0003FFFFFFFFFFFF   (Rules Engine — bordering)
+        Cache refresh events will be carved from the Rules Engine range or a
+        future Cache-specific allocation, to be confirmed with the EventID
+        registry owner before Phase 5.
+
+    Typical cache events to be added in Phase 5:
+      <event id="0x0003000000000C01" description="NTR-CACHE-REFRESH-REQUEST">
+        <action name="com.mobileum.ntr.cache.handler.CacheRefreshHandler">
+          <param name="logLevel">global:sds_logLevelAlways</param>
+        </action>
+      </event>
+      <event id="0x0003000000000C02" description="NTR-CACHE-INVALIDATION-NOTICE">
+        <action name="com.mobileum.ntr.cache.handler.CacheInvalidationHandler"/>
+      </event>
+  -->
+
+</sds-rule-definition>
